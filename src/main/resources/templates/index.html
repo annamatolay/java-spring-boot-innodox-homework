@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
+<head th:replace="fragments/head :: header"></head>
 <body>
-Hello World!
+<div th:replace="fragments/head :: navbar"></div>
+<div id="content-wrapper">
+    <div class="container-fluid">
+        <th:block th:switch="${c}">
+            <div th:case="'acc'">
+                <div th:replace="fragments/tables :: ${c}"></div>
+            </div>
+            <div th:case="'prod'">
+                <div th:replace="fragments/tables :: ${c}"></div>
+            </div>
+            <div th:case="*">
+                Hello World!
+            </div>
+        </th:block>
+    </div>
 </body>
 </html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
+<body>
+
+<div class="card mb-3" th:fragment="acc">
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover" width="100%" cellspacing="0">
+            <thead>
+            <tr>
+                <th:block th:each="head : ${theads}">
+                    <th th:text="*{head}"></th>
+                </th:block>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="acc : ${accounts}">
+                <tr>
+                    <td th:text="*{acc.id}"></td>
+                    <td th:text="*{acc.username}"></td>
+                    <td th:text="*{acc.email}"></td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="card mb-3" th:fragment="prod">
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover" width="100%" cellspacing="0">
+            <thead>
+            <tr>
+                <th:block th:each="head : ${theads}">
+                    <th th:text="*{head}"></th>
+                </th:block>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="prod : ${products}">
+                <tr>
+                    <td th:text="*{prod.id}"></td>
+                    <td th:text="*{prod.name}"></td>
+                    <td th:text="*{prod.ownerId}"></td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
