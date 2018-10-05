@@ -2,49 +2,69 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
 <body>
 
-<div class="card mb-3" th:fragment="acc">
-    <div class="table-responsive">
-        <table class="table table-bordered table-hover" width="100%" cellspacing="0">
-            <thead>
-            <tr>
-                <th:block th:each="head : ${theads}">
-                    <th th:text="*{head}"></th>
-                </th:block>
-            </tr>
-            </thead>
-            <tbody>
-            <th:block th:each="acc : ${accounts}">
-                <tr>
-                    <td th:text="*{acc.id}"></td>
-                    <td th:text="*{acc.username}"></td>
-                    <td th:text="*{acc.email}"></td>
-                </tr>
+<div class="table-responsive" th:fragment="acc">
+    <a type="button" class="btn btn-success" data-toggle="modal" data-target="#accModal">ADD</a>
+    <table class="table table-bordered table-hover" width="100%" cellspacing="0">
+        <thead>
+        <tr>
+            <th:block th:each="head : ${theads}">
+                <th th:text="*{head}"></th>
             </th:block>
-            </tbody>
-        </table>
-    </div>
+            <th>ACTIONS</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="acc : ${accounts}">
+            <tr>
+                <td th:text="*{acc.id}"></td>
+                <td th:text="*{acc.username}"></td>
+                <td th:text="*{acc.email}"></td>
+                <td><a type="button" class="btn btn-danger">DELETE</a></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
 </div>
 
-<div class="card mb-3" th:fragment="prod">
-    <div class="table-responsive">
-        <table class="table table-bordered table-hover" width="100%" cellspacing="0">
-            <thead>
-            <tr>
-                <th:block th:each="head : ${theads}">
-                    <th th:text="*{head}"></th>
-                </th:block>
-            </tr>
-            </thead>
-            <tbody>
-            <th:block th:each="prod : ${products}">
-                <tr>
-                    <td th:text="*{prod.id}"></td>
-                    <td th:text="*{prod.name}"></td>
-                    <td th:text="*{prod.ownerId}"></td>
-                </tr>
+<div class="table-responsive" th:fragment="prod">
+    <a type="button" class="btn btn-success" data-toggle="modal" data-target="#prodModal">ADD</a>
+    <table class="table table-bordered table-hover" width="100%" cellspacing="0">
+        <thead>
+        <tr>
+            <th:block th:each="head : ${theads}">
+                <th th:text="*{head}"></th>
             </th:block>
-            </tbody>
-        </table>
+            <th>ACTIONS</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="prod : ${products}">
+            <tr>
+                <td th:text="*{prod.id}"></td>
+                <td th:text="*{prod.name}"></td>
+                <td th:text="*{prod.ownerId}"></td>
+                <td><a type="button" class="btn btn-danger">DELETE</a></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+    <div id="prodModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">New Product</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
 

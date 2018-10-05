@@ -3,19 +3,78 @@
 <head th:replace="fragments/head :: header"></head>
 <body>
 <div th:replace="fragments/head :: navbar"></div>
-<div id="content-wrapper">
-    <div class="container-fluid">
-        <th:block th:switch="${c}">
-            <div th:case="'acc'">
-                <div th:replace="fragments/tables :: ${c}"></div>
+<div class="container-fluid">
+    <th:block th:switch="${c}">
+        <div th:case="'acc'">
+            <div th:replace="fragments/tables :: ${c}"></div>
+        </div>
+        <div th:case="'prod'">
+            <div th:replace="fragments/tables :: ${c}"></div>
+        </div>
+        <div th:case="*">
+            Hello World!
+        </div>
+    </th:block>
+</div>
+
+<div id="accModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">New Account</h4>
             </div>
-            <div th:case="'prod'">
-                <div th:replace="fragments/tables :: ${c}"></div>
+            <div class="modal-body">
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <div class="form-label-group">
+                            <label for="inputAccountName">Account name</label>
+                            <input type="text" id="inputAccountName" class="form-control" placeholder="Account name" required="required" autofocus="autofocus">
+                        </div>
+                        <div class="form-label-group">
+                            <label for="inputEmail">Email</label>
+                            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required">
+                        </div>
+                    </div>
+                    <input class="btn btn-primary btn-block" type="submit" value="Submit"/>
+                </form>
             </div>
-            <div th:case="*">
-                Hello World!
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
-        </th:block>
+        </div>
+
     </div>
+</div>
+
+<div id="prodModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">New Product</h4>
+            </div>
+            <div class="modal-body">
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <div class="form-label-group">
+                            <label for="inputProductName">Product name</label>
+                            <input type="text" id="inputProductName" class="form-control" placeholder="Product name" required="required" autofocus="autofocus">
+                        </div>
+                        <div class="form-label-group">
+                            <label for="inputOwnerEmail">Owner email address</label>
+                            <input type="email" id="inputOwnerEmail" class="form-control" placeholder="Email address" required="required">
+                        </div>
+                    </div>
+                    <input class="btn btn-primary btn-block" type="submit" value="Submit"/>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

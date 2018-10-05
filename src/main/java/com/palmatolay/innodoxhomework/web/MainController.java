@@ -35,7 +35,7 @@ public class MainController {
 					model.put("accounts", accountService.getAll());
 					break;
 				case product:
-					model.put("c", "acc");
+					model.put("c", product);
 					model.put("theads", productTableHead);
 					model.put("products", productService.getAll());
 					break;
