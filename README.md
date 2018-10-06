@@ -4,16 +4,16 @@ This is simmple full-stack web application. It can create, read and delete accou
 
 ## Instruction
 1. Clone (or download) the application from here
-2. Execute the following command:
+2. Execute the following command (from the project root directory):
 ###### Ubuntu:
 ```
 ./gradlew bootRun
 ```
 ###### Windows:
 ```
-./gradlew.bat bootRun
+gradlew.bat bootRun
 ```
-3. If you see on the console '_Started MainApplication_' then you can reach the it [here](http://localhost:8080).
+3. If you can see in the console '_Started MainApplication_' then you can reach it [here](http://localhost:8080).
 
 
 ## Tech stack
@@ -32,7 +32,7 @@ This is simmple full-stack web application. It can create, read and delete accou
 
 ### Persistence
 * dto
-* models
+* models (entities)
 * repositories
 
 ### Service
