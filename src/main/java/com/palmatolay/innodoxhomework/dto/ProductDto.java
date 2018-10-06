@@ -1,5 +1,8 @@
 package com.palmatolay.innodoxhomework.dto;
 
+/**
+ * Product data transfer object responsible to transfer data from the web layer to the service layer
+ */
 public class ProductDto {
 	private String name;
 	private String ownerEmail;
