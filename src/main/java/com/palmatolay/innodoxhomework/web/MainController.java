@@ -1,19 +1,21 @@
 package com.palmatolay.innodoxhomework.web;
 
+import com.palmatolay.innodoxhomework.dto.ProductDto;
+import com.palmatolay.innodoxhomework.model.Account;
+import com.palmatolay.innodoxhomework.model.Product;
 import com.palmatolay.innodoxhomework.service.AccountService;
 import com.palmatolay.innodoxhomework.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.Map;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/")
 public class MainController {
 
+	private final static String ACC = "acc";
+	private final static String PROD = "prod";
 	private final String[] accountTableHead = new String[] {"id", "username", "email"};
 	private final String[] productTableHead = new String[] {"id", "name", "ownerId"};
 
@@ -24,29 +26,40 @@ public class MainController {
 	private ProductService productService;
 
 	@GetMapping("/")
-	public String index(@RequestParam(value = "c", required = false) String content, Map<String, Object> model){
-		final String account = "acc";
-		final String product = "prod";
+	public String index(@RequestParam(value = "c", required = false) String content, Model model){
 		if (content != null) {
 			switch (content) {
-				case account:
-					model.put("c", account);
-					model.put("theads", accountTableHead);
-					model.put("accounts", accountService.getAll());
+				case ACC:
+					model.addAttribute("c", ACC);
+					model.addAttribute("theads", accountTableHead);
+					model.addAttribute("accounts", accountService.getAll());
 					break;
-				case product:
-					model.put("c", product);
-					model.put("theads", productTableHead);
-					model.put("products", productService.getAll());
+				case PROD:
+					model.addAttribute("c", PROD);
+					model.addAttribute("theads", productTableHead);
+					model.addAttribute("products", productService.getAll());
 					break;
-				default:
-					model.put("c", "");
 			}
 		} else {
-			model.put("c", "");
+			model.addAttribute("c", "");
 		}
-		System.out.println(content);
-		System.out.println(model.toString());
+		model.addAttribute("account", new Account());
+		model.addAttribute("productDto", new ProductDto());
 		return "index";
+	}
+
+	@PostMapping("/{target}")
+	public String formHandling(@PathVariable("target") String target,
+							  @ModelAttribute Account account,
+							  @ModelAttribute ProductDto productDto){
+		if (target != null) switch (target){
+			case ACC:
+				accountService.save(account);
+				return "redirect:/?c="+ACC;
+			case PROD:
+				productService.save(productDto);
+				return "redirect:/?c="+PROD;
+		}
+		return "redirect:/";
 	}
 }

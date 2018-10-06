@@ -25,15 +25,17 @@
                 <h4 class="modal-title">New Account</h4>
             </div>
             <div class="modal-body">
-                <form action="#" method="post">
+                <form action="#" th:action="@{/acc}" th:object="${account}" method="post">
                     <div class="form-group">
                         <div class="form-label-group">
                             <label for="inputAccountName">Account name</label>
-                            <input type="text" id="inputAccountName" class="form-control" placeholder="Account name" required="required" autofocus="autofocus">
+                            <input type="text" id="inputAccountName" th:field="*{username}"
+                                   class="form-control" placeholder="Account name" required="required" autofocus="autofocus">
                         </div>
                         <div class="form-label-group">
                             <label for="inputEmail">Email</label>
-                            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required">
+                            <input type="email" id="inputEmail" th:field="*{email}"
+                                   class="form-control" placeholder="Email address" required="required">
                         </div>
                     </div>
                     <input class="btn btn-primary btn-block" type="submit" value="Submit"/>
@@ -55,15 +57,17 @@
                 <h4 class="modal-title">New Product</h4>
             </div>
             <div class="modal-body">
-                <form action="#" method="post">
+                <form action="#" th:action="@{/prod}" th:object="${productDto}" method="post">
                     <div class="form-group">
                         <div class="form-label-group">
                             <label for="inputProductName">Product name</label>
-                            <input type="text" id="inputProductName" class="form-control" placeholder="Product name" required="required" autofocus="autofocus">
+                            <input type="text" id="inputProductName" th:field="*{name}"
+                                   class="form-control" placeholder="Product name" required="required" autofocus="autofocus">
                         </div>
                         <div class="form-label-group">
                             <label for="inputOwnerEmail">Owner email address</label>
-                            <input type="email" id="inputOwnerEmail" class="form-control" placeholder="Email address" required="required">
+                            <input type="email" id="inputOwnerEmail" th:field="*{ownerEmail}"
+                                   class="form-control" placeholder="Email address" required="required">
                         </div>
                     </div>
                     <input class="btn btn-primary btn-block" type="submit" value="Submit"/>

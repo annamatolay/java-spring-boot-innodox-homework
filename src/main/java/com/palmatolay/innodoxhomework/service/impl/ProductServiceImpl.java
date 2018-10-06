@@ -1,6 +1,9 @@
 package com.palmatolay.innodoxhomework.service.impl;
 
+import com.palmatolay.innodoxhomework.dto.ProductDto;
+import com.palmatolay.innodoxhomework.model.Account;
 import com.palmatolay.innodoxhomework.model.Product;
+import com.palmatolay.innodoxhomework.repository.AccountRepository;
 import com.palmatolay.innodoxhomework.repository.ProductRepository;
 import com.palmatolay.innodoxhomework.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +17,22 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	private ProductRepository productRepository;
 
+	@Autowired
+	private AccountRepository accountRepository;
+
 	@Override
 	public Product save(Product product) {
 		return productRepository.save(product);
+	}
+
+	@Override
+	public Product save(ProductDto productDto) {
+		Account owner = accountRepository.findByEmail(productDto.getOwnerEmail());
+		if (owner == null) throw new IllegalArgumentException("Given owner email address doesn't exist in the DB!");
+		Product prod = new Product();
+		prod.setName(productDto.getName());
+		prod.setOwner(owner);
+		return productRepository.save(prod);
 	}
 
 	@Override
