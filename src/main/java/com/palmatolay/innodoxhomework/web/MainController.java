@@ -50,14 +50,27 @@ public class MainController {
 
 	@PostMapping("/{target}")
 	public String formHandling(@PathVariable("target") String target,
-							  @ModelAttribute Account account,
-							  @ModelAttribute ProductDto productDto){
+							   @ModelAttribute Account account,
+							   @ModelAttribute ProductDto productDto){
 		if (target != null) switch (target){
 			case ACC:
 				accountService.save(account);
 				return "redirect:/?c="+ACC;
 			case PROD:
 				productService.save(productDto);
+				return "redirect:/?c="+PROD;
+		}
+		return "redirect:/";
+	}
+	@GetMapping("/delete/{target}")
+	public String delete(@PathVariable("target") String target,
+						 @RequestParam(value = "id") Long id){
+		if (target != null) switch (target){
+			case ACC:
+				accountService.delete(id);
+				return "redirect:/?c="+ACC;
+			case PROD:
+				productService.delete(id);
 				return "redirect:/?c="+PROD;
 		}
 		return "redirect:/";

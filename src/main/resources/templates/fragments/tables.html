@@ -19,7 +19,7 @@
                 <td th:text="*{acc.id}"></td>
                 <td th:text="*{acc.username}"></td>
                 <td th:text="*{acc.email}"></td>
-                <td><a type="button" class="btn btn-danger">DELETE</a></td>
+                <td><a th:href="'/delete/acc?id='+${acc.id}" type="button" class="btn btn-danger">DELETE</a></td>
             </tr>
         </th:block>
         </tbody>
@@ -43,7 +43,7 @@
                 <td th:text="*{prod.id}"></td>
                 <td th:text="*{prod.name}"></td>
                 <td th:text="*{prod.owner.id}"></td>
-                <td><a type="button" class="btn btn-danger">DELETE</a></td>
+                <td><a th:href="'/delete/prod?id='+${prod.id}" type="button" class="btn btn-danger">DELETE</a></td>
             </tr>
         </th:block>
         </tbody>
